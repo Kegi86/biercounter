@@ -150,12 +150,13 @@ function doPayed(ele) {
  * @param taskName  the name of the task to do
  * @param listId    the listId as UUID
  */
-function putEditTodoItem(itemId, taskName, listId) {
+function putEditTodoItem(itemId, taskName, listId, bierDrank, bierPaid) {
     let todoItem = {
         itemId: itemId,
         taskName: taskName,
         listId: listId,
-        //bierDrank: bierDrank
+        bierDrank: bierDrank,
+        bierPaid: bierPaid,
     };
     let requestJSON = JSON.stringify(todoItem);
     $.ajax({
@@ -282,10 +283,16 @@ function createTodoRow(parent, data) {
         .text(data.taskName)
         .appendTo(todoRow);
 
-    // Task Name
+    // DrankBier
     let manyDrank = $('<span/>')
-        .addClass('todo-title')
-        .text(data.bierDrank)
+        .addClass('')
+        .text("Getrunken: " + data.bierDrank)
+        .appendTo(todoRow);
+
+    // PayedBier
+    let manyPayed = $('<span/>')
+        .addClass('')
+        .text("Bezahlt: " + data.bierPaid)
         .appendTo(todoRow);
 
 

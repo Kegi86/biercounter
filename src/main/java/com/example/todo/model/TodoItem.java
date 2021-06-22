@@ -34,7 +34,7 @@ public class TodoItem {
     private Date createdAt = new Date();
 
     private Integer bierDrank = 0;
-    private Integer bierPaid = 4;
+    private Integer bierPaid = 0;
 
     public Long getItemId() {
         return itemId;
