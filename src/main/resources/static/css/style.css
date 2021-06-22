@@ -19,8 +19,11 @@ body {
     font-size: 18px;
     line-height: 1.58;
     background: #6699FF;
-    background: -webkit-linear-gradient(to left, #336699, #228899);
-    background: linear-gradient(to left, #336699, #228899);
+   /* background: -webkit-linear-gradient(to left, #336699, #228899);
+    background: linear-gradient(to left, #336699, #228899);*/
+    background-image: url("../image/pexels-anna-kapustina-1324896.jpg");
+   background-size: 100% auto;
+
     color: #333;
 }
 
@@ -39,6 +42,7 @@ i {
 
 input {
     border: 1px solid #E8E8E8;
+
 }
 
 .page-title {
@@ -53,6 +57,7 @@ input {
     background-color: #fff;
     padding: 15px;
     box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+
 }
 
 .form-control {
@@ -60,6 +65,7 @@ input {
     padding-left: 15px;
     outline: none;
     border: 1px solid #E8E8E8;
+
 }
 
 .form-control:focus {
@@ -107,10 +113,27 @@ input {
 }
 
 .todo-content .todo-title {
-    width: calc(100% - 160px);
+    width: calc(45% - 100px);
     margin-left: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.todo-content .values {
+    text-align: left;
+    justify-content: center;
+    width: 120px;
+    height: 100%px;
+    font-size: 14px;
+    border: #333333;
+    padding-left: 4px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    margin-right: 20px;
+
 }
 
 .todo-content .todo-completed {

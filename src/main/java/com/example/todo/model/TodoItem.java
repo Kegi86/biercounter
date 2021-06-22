@@ -34,7 +34,7 @@ public class TodoItem {
     private Date createdAt = new Date();
 
     private Integer bierDrank = 0;
-    private Integer bierPaid = 4;
+    private Integer bierPaid = 0;
 
     public Long getItemId() {
         return itemId;
@@ -75,16 +75,24 @@ public class TodoItem {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
     //setBierDrank erhöht getrunkene Biere um 1
 
     public Integer getBierDrank () {return bierDrank;}
     public void doBierDrunkIncrement() {
         this.bierDrank++;
     }
+    public void doBierDrunkDecrement() {
+        if (this.bierDrank > 0) {this.bierDrank--;}
+    }
 
     //setBierPaid fügt den gezahlten Biere die getrunknen Biere hinzu und resetet getrunkene Biere auf 0
 
     public Integer getBierPaid () {return bierPaid;}
+    public void doBierPayed() {
+        this.bierPaid = this.bierPaid + this.bierDrank;
+        this.bierDrank = 0;
+    }
 
     public void setBierPaid (Integer bierPaid) {bierPaid = bierPaid + bierDrank; bierDrank = 0;}
 }
