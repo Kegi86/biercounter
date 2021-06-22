@@ -83,7 +83,7 @@ public class TodoItem {
         this.bierDrank++;
     }
     public void doBierDrunkDecrement() {
-        this.bierDrank--;
+        if (this.bierDrank > 0) {this.bierDrank--;}
     }
 
     //setBierPaid fügt den gezahlten Biere die getrunknen Biere hinzu und resetet getrunkene Biere auf 0
