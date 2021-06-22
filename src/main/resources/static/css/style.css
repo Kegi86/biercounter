@@ -19,8 +19,11 @@ body {
     font-size: 18px;
     line-height: 1.58;
     background: #6699FF;
-    background: -webkit-linear-gradient(to left, #336699, #228899);
-    background: linear-gradient(to left, #336699, #228899);
+   /* background: -webkit-linear-gradient(to left, #336699, #228899);
+    background: linear-gradient(to left, #336699, #228899);*/
+    background-image: url("../image/pexels-anna-kapustina-1324896.jpg");
+   background-size: 100% auto;
+
     color: #333;
 }
 
