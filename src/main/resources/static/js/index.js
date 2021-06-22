@@ -154,7 +154,8 @@ function putEditTodoItem(itemId, taskName, listId) {
     let todoItem = {
         itemId: itemId,
         taskName: taskName,
-        listId: listId
+        listId: listId,
+        //bierDrank: bierDrank
     };
     let requestJSON = JSON.stringify(todoItem);
     $.ajax({
@@ -281,6 +282,11 @@ function createTodoRow(parent, data) {
         .text(data.taskName)
         .appendTo(todoRow);
 
+    // Task Name
+    let manyDrank = $('<span/>')
+        .addClass('todo-title')
+        .text(data.bierDrank)
+        .appendTo(todoRow);
 
 
     // Actions
@@ -320,18 +326,9 @@ function createTodoRow(parent, data) {
         .text('monetization_on')
         .appendTo(payAttr);
 
-//shop icon
-    let shopAttr = $('<a/>')
-        .attr("id", data.itemId) // to know item id!
-        .attr("onclick", "editTodoItem(this)")
-        .appendTo(todoActions);
 
-    let shopIcon = $('<i/>')
-        .addClass('material-icons')
-        .text('shopping_cart')
-        .appendTo(shopAttr);
 
-   /* // Delete icon
+// Delete icon
     let deleteAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
         .attr("onclick", "deleteTodoItem(this)")
@@ -339,10 +336,8 @@ function createTodoRow(parent, data) {
 
     let deleteIcon = $('<i/>')
         .addClass('material-icons')
-        .text('delete')
+        .text('clear')
         .appendTo(deleteAttr);
-
-*/
 
 
 }
