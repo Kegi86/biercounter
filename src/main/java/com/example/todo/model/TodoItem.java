@@ -75,11 +75,15 @@ public class TodoItem {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
     //setBierDrank erhöht getrunkene Biere um 1
 
     public Integer getBierDrank () {return bierDrank;}
     public void doBierDrunkIncrement() {
         this.bierDrank++;
+    }
+    public void doBierDrunkDecrement() {
+        this.bierDrank--;
     }
 
     //setBierPaid fügt den gezahlten Biere die getrunknen Biere hinzu und resetet getrunkene Biere auf 0

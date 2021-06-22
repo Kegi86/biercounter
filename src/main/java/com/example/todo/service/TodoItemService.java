@@ -86,6 +86,7 @@ public class TodoItemService {
         return todoItemRepository.findByItemId(id);
     }
 
+
     public  TodoItem doIncrementForTodoItem(Long id) {
         TodoItem item = todoItemRepository.findByItemId(id);
         if (item != null) {
@@ -95,6 +96,18 @@ public class TodoItemService {
         }
         return null;
     }
+
+    public  TodoItem doDecrementForTodoItem(Long id) {
+        TodoItem item = todoItemRepository.findByItemId(id);
+        if (item != null) {
+            item.doBierDrunkDecrement();
+            todoItemRepository.save(item);
+            return item;
+        }
+        return null;
+    }
+
+
 }
 
 

@@ -70,5 +70,12 @@ public class TodoItemController {
     public ResponseEntity<TodoItem> doIncrement(@PathVariable Long id) {
         return ResponseEntity.ok(todoItemService.doIncrementForTodoItem(id));
     }
+
+    @PutMapping("/decrement/{id}")
+    public ResponseEntity<TodoItem> doDecrement(@PathVariable Long id) {
+        return ResponseEntity.ok(todoItemService.doDecrementForTodoItem(id));
+    }
+
+
 }
 
