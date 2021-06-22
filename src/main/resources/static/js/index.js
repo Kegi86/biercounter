@@ -245,10 +245,12 @@ function editTodoItem(ele) {
     // then get list item we created before.
     let listItem = $("#item" + itemId);
     let titleSpan = listItem.find(".todo-title");
+    //let valuesSpan = listItem.find(".values");
 
     // set the text field
     let taskNameTextField = $("#taskNameTextField");
     taskNameTextField.val(titleSpan.text());
+    //taskNameTextField.val(valuesSpan.text());
     // set the attribute that we are editing!
     taskNameTextField.attr("isEditing", true);
     taskNameTextField.attr("editingItemId", itemId);
@@ -285,13 +287,13 @@ function createTodoRow(parent, data) {
 
     // DrankBier
     let manyDrank = $('<span/>')
-        .addClass('')
+        .addClass('values')
         .text("Getrunken: " + data.bierDrank)
         .appendTo(todoRow);
 
     // PayedBier
     let manyPayed = $('<span/>')
-        .addClass('')
+        .addClass('values')
         .text("Bezahlt: " + data.bierPaid)
         .appendTo(todoRow);
 
