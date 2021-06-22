@@ -56,6 +56,35 @@ function changeDoneState(ele) {
 }
 
 /**
+ * Handles the change of the todoItem status
+ * @param ele the todoItem
+ */
+function doIncrement(ele) {
+    let itemId = $(ele).attr("id"); // get the item id!
+    $.ajax({
+        type: "PUT",
+        url: "/api/v1/increment/" + itemId,
+        success: function (data) {
+            // Create new list item
+            let newListItem = $('<li/>')
+                .attr("id", "item" + data.itemId);
+
+            if (data.done) {
+                // newListItem.addClass('completed')
+            }
+
+            createTodoRow(newListItem, data);
+
+            // Replace the old one by the new one
+            let oldListItem = $("#item" + itemId);
+            oldListItem.replaceWith(newListItem);
+        },
+        error: function (data) {
+        }
+    });
+}
+
+/**
  * Updates an existing todoItem in terms of taskName. The old item
  * is replaced in the todoList by the newItem from the backend.
  * @param itemId    the todoItem id
@@ -214,7 +243,7 @@ function createTodoRow(parent, data) {
     //add icon
     let addAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
-        .attr("onclick", "editTodoItem(this)")
+        .attr("onclick", "doIncrement(this)")
         .appendTo(todoActions);
 
     let addIcon = $('<i/>')
