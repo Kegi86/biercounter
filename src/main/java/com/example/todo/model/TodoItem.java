@@ -89,6 +89,10 @@ public class TodoItem {
     //setBierPaid fügt den gezahlten Biere die getrunknen Biere hinzu und resetet getrunkene Biere auf 0
 
     public Integer getBierPaid () {return bierPaid;}
+    public void doBierPayed() {
+        this.bierPaid = this.bierPaid + this.bierDrank;
+        this.bierDrank = 0;
+    }
 
     public void setBierPaid (Integer bierPaid) {bierPaid = bierPaid + bierDrank; bierDrank = 0;}
 }

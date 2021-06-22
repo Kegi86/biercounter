@@ -59,11 +59,70 @@ function changeDoneState(ele) {
  * Handles the change of the todoItem status
  * @param ele the todoItem
  */
+function doDecrement(ele) {
+    let itemId = $(ele).attr("id"); // get the item id!
+    $.ajax({
+        type: "PUT",
+        url: "/api/v1/decrement/" + itemId,
+        success: function (data) {
+            // Create new list item
+            let newListItem = $('<li/>')
+                .attr("id", "item" + data.itemId);
+
+            if (data.done) {
+                // newListItem.addClass('completed')
+            }
+
+            createTodoRow(newListItem, data);
+
+            // Replace the old one by the new one
+            let oldListItem = $("#item" + itemId);
+            oldListItem.replaceWith(newListItem);
+        },
+        error: function (data) {
+        }
+    });
+}
+
+
+/**
+ * Handles the change of the todoItem status
+ * @param ele the todoItem
+ */
 function doIncrement(ele) {
     let itemId = $(ele).attr("id"); // get the item id!
     $.ajax({
         type: "PUT",
         url: "/api/v1/increment/" + itemId,
+        success: function (data) {
+            // Create new list item
+            let newListItem = $('<li/>')
+                .attr("id", "item" + data.itemId);
+
+            if (data.done) {
+                // newListItem.addClass('completed')
+            }
+
+            createTodoRow(newListItem, data);
+
+            // Replace the old one by the new one
+            let oldListItem = $("#item" + itemId);
+            oldListItem.replaceWith(newListItem);
+        },
+        error: function (data) {
+        }
+    });
+}
+
+/**
+ * Handles the change of the todoItem status
+ * @param ele the todoItem
+ */
+function doPayed(ele) {
+    let itemId = $(ele).attr("id"); // get the item id!
+    $.ajax({
+        type: "PUT",
+        url: "/api/v1/payed/" + itemId,
         success: function (data) {
             // Create new list item
             let newListItem = $('<li/>')
@@ -229,10 +288,10 @@ function createTodoRow(parent, data) {
         .addClass('todo-actions')
         .appendTo(todoRow)
 
-    //remove icon
+//remove icon
     let removeAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
-        .attr("onclick", "editTodoItem(this)")
+        .attr("onclick", "doDecrement(this)")
         .appendTo(todoActions);
 
     let removeIcon = $('<i/>')
@@ -240,7 +299,7 @@ function createTodoRow(parent, data) {
         .text('remove_circle_outline')
         .appendTo(removeAttr);
 
-    //add icon
+//add icon
     let addAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
         .attr("onclick", "doIncrement(this)")
@@ -253,7 +312,7 @@ function createTodoRow(parent, data) {
 //pay icon
     let payAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
-        .attr("onclick", "editTodoItem(this)")
+        .attr("onclick", "doPayed(this)")
         .appendTo(todoActions);
 
     let payIcon = $('<i/>')
