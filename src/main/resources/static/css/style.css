@@ -19,8 +19,11 @@ body {
     font-size: 18px;
     line-height: 1.58;
     background: #6699FF;
-    background: -webkit-linear-gradient(to left, #336699, #228899);
-    background: linear-gradient(to left, #336699, #228899);
+   /* background: -webkit-linear-gradient(to left, #336699, #228899);
+    background: linear-gradient(to left, #336699, #228899);*/
+    background-image: url("../image/background.jpg");
+   background-size: 100% auto;
+
     color: #333;
 }
 
@@ -119,9 +122,9 @@ input {
 .todo-content .values {
     text-align: left;
     justify-content: center;
-    width: 120px;
-    height: 100%px;
-    font-size: 14px;
+    width: 40px;
+    height: 100%;
+    font-size: 20px;
     border: #333333;
     padding-left: 4px;
     box-sizing: border-box;

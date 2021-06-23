@@ -284,17 +284,28 @@ function createTodoRow(parent, data) {
         .addClass('todo-title')
         .text(data.taskName)
         .appendTo(todoRow);
+//Beer Icon
+    let bierIcon = $('<span/>')
+        .addClass('material-icons')
+        .text('sports_bar')
+        .appendTo(todoRow);
 
     // DrankBier
     let manyDrank = $('<span/>')
         .addClass('values')
-        .text("Getrunken: " + data.bierDrank)
+        .text( data.bierDrank)
+        .appendTo(todoRow);
+// Payed Icon
+
+    let dollarIcon = $('<span/>')
+        .addClass('material-icons')
+        .text('monetization_on')
         .appendTo(todoRow);
 
     // PayedBier
     let manyPayed = $('<span/>')
         .addClass('values')
-        .text("Bezahlt: " + data.bierPaid)
+        .text(data.bierPaid)
         .appendTo(todoRow);
 
 
@@ -334,6 +345,7 @@ function createTodoRow(parent, data) {
         .addClass('material-icons')
         .text('monetization_on')
         .appendTo(payAttr);
+
 
 
 
