@@ -57,6 +57,7 @@ input {
     background-color: #fff;
     padding: 15px;
     box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+    border-radius: 20px;
 
 }
 
@@ -159,8 +160,8 @@ input {
 .todo-content .todo-actions a, .todo-content .edit-actions a {
     display: inline-block;
     text-align: center;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
 }
 
