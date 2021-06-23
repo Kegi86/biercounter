@@ -8,7 +8,7 @@ networks:
 services:
 
   biercounter-app-h2:
-    image: uportal/biercounter:latest
+    image: svdobu/biercounter:latest
     labels:
       - "traefik.backend=bier-h2"
       - "traefik.frontend.rule=Host:bier-h2.united-portal.com"
@@ -20,7 +20,7 @@ services:
     networks:
       - proxy
     environment:
-      APP_NAME: Mitarbeiter DB mit Spring Boot and H2
+      APP_NAME: Biercounter DB mit Spring Boot and H2
       ACTIVE_PROFILES: dev,h2
       APP_URL: https://bier-h2.united-portal.com
 
