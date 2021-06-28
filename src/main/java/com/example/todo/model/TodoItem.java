@@ -95,4 +95,12 @@ public class TodoItem {
     }
 
     public void setBierPaid (Integer bierPaid) {bierPaid = bierPaid + bierDrank; bierDrank = 0;}
+
+    public Integer getOneBierPaid () {return bierPaid;}
+    public void doOneBierPay() {
+        this.bierPaid = this.bierPaid + 1;
+        this.bierDrank = this.bierDrank - 1;
+    }
+
+    public void setOneBierPaid (Integer bierPaid) {bierPaid = bierPaid + 1; bierDrank = bierDrank -1;}
 }

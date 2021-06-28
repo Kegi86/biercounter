@@ -81,6 +81,11 @@ public class TodoItemController {
         return ResponseEntity.ok(todoItemService.doPayedForPersItem(id));
     }
 
+    @PutMapping("/payone/{id}")
+    public ResponseEntity<TodoItem> doPayOne(@PathVariable Long id) {
+        return ResponseEntity.ok(todoItemService.doPayOneForPersItem(id));
+    }
+
 
 }
 

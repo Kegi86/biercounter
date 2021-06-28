@@ -143,6 +143,31 @@ function doPayed(ele) {
     });
 }
 
+//funktion 1 bier bezahlt
+function doPayOne(ele) {
+    let itemId = $(ele).attr("id"); // get the item id!
+    $.ajax({
+        type: "PUT",
+        url: "/api/v1/payone/" + itemId,
+        success: function (data) {
+            // Create new list item
+            let newListItem = $('<li/>')
+                .attr("id", "item" + data.itemId);
+
+            if (data.done) {
+                // newListItem.addClass('completed')
+            }
+
+            createTodoRow(newListItem, data);
+
+            // Replace the old one by the new one
+            let oldListItem = $("#item" + itemId);
+            oldListItem.replaceWith(newListItem);
+        },
+        error: function (data) {
+        }
+    });
+}
 /**
  * Updates an existing todoItem in terms of taskName. The old item
  * is replaced in the todoList by the newItem from the backend.
@@ -346,6 +371,18 @@ function createTodoRow(parent, data) {
         .text('monetization_on')
         .appendTo(payAttr);
 
+
+    //pay one
+
+    let payoneAttr = $('<a/>')
+        .attr("id", data.itemId) // to know item id!
+        .attr("onclick", "doPayOne(this)")
+        .appendTo(todoActions);
+
+    let payoneIcon = $('<i/>')
+        .addClass('material-icons')
+        .text('exposure_neg_1')
+        .appendTo(payoneAttr);
 
 
 

@@ -117,6 +117,16 @@ public class TodoItemService {
         return null;
     }
 
+    public TodoItem doPayOneForPersItem(Long id) {
+        TodoItem item = todoItemRepository.findByItemId(id);
+        if (item != null) {
+            item.doOneBierPay();
+            todoItemRepository.save(item);
+            return item;
+        }
+        return null;
+    }
+
 
 }
 
