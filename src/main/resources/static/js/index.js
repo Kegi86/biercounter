@@ -248,6 +248,9 @@ function postNewTodoItem(taskName, listId) {
  */
 function deleteTodoItem(ele) {
     let itemId = $(ele).attr("id"); // get the item id!
+
+    if(confirm("Are your Sure you want delete this Person from the List?")) {
+
     $.ajax({
         type: "DELETE",
         url: "/api/v1/delete/" + itemId,
@@ -257,7 +260,7 @@ function deleteTodoItem(ele) {
         },
         error: function (data) {
         }
-    });
+    });} else { }
 }
 
 /**
