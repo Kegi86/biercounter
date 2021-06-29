@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class TodoItem {
+public class PersItem {
 
 
     @Id
@@ -19,9 +19,9 @@ public class TodoItem {
     @NotEmpty(message="* Enter Task Name")
     private String taskName;
 
-    public TodoItem() {}
+    public PersItem() {}
 
-    public TodoItem(UUID listId, String taskName, Date createdAt) {
+    public PersItem(UUID listId, String taskName, Date createdAt) {
         this.listId = listId;
         this.taskName = taskName;
         this.createdAt = createdAt;
@@ -98,8 +98,10 @@ public class TodoItem {
 
     public Integer getOneBierPaid () {return bierPaid;}
     public void doOneBierPay() {
-        this.bierPaid = this.bierPaid + 1;
-        this.bierDrank = this.bierDrank - 1;
+        if (this.bierDrank > 0) {
+            this.bierPaid = this.bierPaid + 1;
+            this.bierDrank = this.bierDrank - 1;
+        }
     }
 
     public void setOneBierPaid (Integer bierPaid) {bierPaid = bierPaid + 1; bierDrank = bierDrank -1;}

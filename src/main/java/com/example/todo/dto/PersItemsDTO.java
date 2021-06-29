@@ -1,22 +1,22 @@
 package com.example.todo.dto;
 
-import com.example.todo.model.TodoItem;
+import com.example.todo.model.PersItem;
 
 import java.util.List;
 import java.util.UUID;
 
-public class TodoItemsDTO {
+public class PersItemsDTO {
 
     private int count;
     private UUID listId;
-    private List<TodoItem> todoItemList;
+    private List<PersItem> persItemList;
 
-    public TodoItemsDTO(){}
+    public PersItemsDTO(){}
 
-    public TodoItemsDTO(int count, UUID listId, List<TodoItem> todoItemList){
+    public PersItemsDTO(int count, UUID listId, List<PersItem> persItemList){
         this.count = count;
         this.listId = listId;
-        this.todoItemList = todoItemList;
+        this.persItemList = persItemList;
     }
 
     public int getCount() {
@@ -35,12 +35,12 @@ public class TodoItemsDTO {
         this.listId = listId;
     }
 
-    public List<TodoItem> getTodoItemList() {
-        return todoItemList;
+    public List<PersItem> getTodoItemList() {
+        return persItemList;
     }
 
-    public void setTodoItemList(List<TodoItem> todoItemList) {
-        this.todoItemList = todoItemList;
+    public void setTodoItemList(List<PersItem> persItemList) {
+        this.persItemList = persItemList;
     }
 }
 

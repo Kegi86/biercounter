@@ -3,14 +3,14 @@ package com.example.todo.dto;
 import java.util.List;
 import java.util.UUID;
 
-public class TodoItemListsDTO {
+public class DrinkingPersonListsDTO {
 
     private int count;
     private List<UUID> todoItemList;
 
-    public TodoItemListsDTO(){}
+    public DrinkingPersonListsDTO(){}
 
-    public TodoItemListsDTO(int count, List<UUID> todoItemList){
+    public DrinkingPersonListsDTO(int count, List<UUID> todoItemList){
         this.count = count;
         this.todoItemList = todoItemList;
     }

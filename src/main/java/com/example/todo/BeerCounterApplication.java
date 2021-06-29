@@ -19,13 +19,13 @@ import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
 @SpringBootApplication
-public class TodoApplication {
+public class BeerCounterApplication {
 
     @Autowired
     private Environment env;
 
     public static void main(String[] args) {
-        SpringApplication.run(TodoApplication.class, args);
+        SpringApplication.run(BeerCounterApplication.class, args);
     }
 
     @PostConstruct

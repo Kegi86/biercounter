@@ -5,7 +5,7 @@ Add Pay One Beer Button
 
 ```bash
 @PutMapping("/payone/{id}")
-public ResponseEntity<TodoItem> doPayOne(@PathVariable Long id) {
+public ResponseEntity<PersItem> doPayOne(@PathVariable Long id) {
 return ResponseEntity.ok(todoItemService.doPayOneForPersItem(id));
 }
 ```
@@ -29,7 +29,7 @@ mit zu zählen.
 
 ```bash
 @PutMapping("/increment/{id}")
-public ResponseEntity<TodoItem> doIncrement(@PathVariable Long id) {
+public ResponseEntity<PersItem> doIncrement(@PathVariable Long id) {
 return ResponseEntity.ok(todoItemService.doIncrementForPersItem(id));
 }
 ```
@@ -37,8 +37,8 @@ return ResponseEntity.ok(todoItemService.doIncrementForPersItem(id));
 ### Methode erstellen
 
 ```bash
-public  TodoItem doIncrementForPersItem(Long id) {
-TodoItem item = todoItemRepository.findByItemId(id);
+public  PersItem doIncrementForPersItem(Long id) {
+PersItem item = todoItemRepository.findByItemId(id);
 if (item != null) {
 item.doBierDrunkIncrement();
 todoItemRepository.save(item);
