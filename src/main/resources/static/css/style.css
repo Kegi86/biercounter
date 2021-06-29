@@ -49,7 +49,7 @@ input {
     text-align: center;
 }
 
-.todo-content {
+.dinker-content {
     max-width: 650px;
     width: 100%;
     margin: 0 auto;
@@ -73,24 +73,24 @@ input {
     border: 1px solid #626262;
 }
 
-.todo-content .form-control {
+.dinker-content .form-control {
     width: 100%;
     height: 50px;
 }
 
-.todo-content .todo-create {
+.dinker-content .drinker-create {
     padding-bottom: 30px;
     border-bottom: 1px solid #e8e8e8;
 }
 
-.todo-content .alert-danger {
+.dinker-content .alert-danger {
     padding-left: 15px;
     font-size: 14px;
     color: red;
     padding-top: 5px;
 }
 
-.todo-content ul {
+.dinker-content ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -102,25 +102,25 @@ input {
     overflow-y: scroll;
 }
 
-.todo-content ul li {
+.dinker-content ul li {
     padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #E8E8E8;
 }
 
-.todo-content ul li span {
+.dinker-content ul li span {
     display: inline-block;
     vertical-align: middle;
 }
 
-.todo-content .todo-title {
+.dinker-content .drinker-title {
     width: calc(45% - 100px);
     margin-left: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.todo-content .values {
+.dinker-content .values {
     text-align: left;
     justify-content: center;
     width: 40px;
@@ -137,7 +137,7 @@ input {
 
 }
 
-.todo-content .todo-completed {
+.dinker-content .drinking-completed {
     display: inline-block;
     text-align: center;
     width:35px;
@@ -145,19 +145,19 @@ input {
     cursor: pointer;
 }
 
-.todo-content .todo-completed i {
+.dinker-content .drinking-completed i {
     font-size: 20px;
 }
 
-.todo-content .todo-actions, .todo-content .edit-actions {
+.dinker-content .todo-actions, .dinker-content .edit-actions {
     float: right;
 }
 
-.todo-content .todo-actions i, .todo-content .edit-actions i {
+.dinker-content .todo-actions i, .dinker-content .edit-actions i {
     font-size: 17px;
 }
 
-.todo-content .todo-actions a, .todo-content .edit-actions a {
+.dinker-content .todo-actions a, .dinker-content .edit-actions a {
     display: inline-block;
     text-align: center;
     width: 40px;
@@ -165,19 +165,19 @@ input {
     cursor: pointer;
 }
 
-.todo-content .todo-actions a:hover, .todo-content .edit-actions a:hover {
+.dinker-content .todo-actions a:hover, .dinker-content .edit-actions a:hover {
     background-color: #f4f4f4;
 }
 
-.todo-content .todo-edit input {
+.dinker-content .drinker-edit input {
     width: calc(100% - 80px);
     height: 50px;
 }
-.todo-content .edit-actions {
+.dinker-content .edit-actions {
     text-align: right;
 }
 
-.no-todos {
+.no-drinker {
     text-align: center;
 }
 
@@ -189,7 +189,7 @@ li.completed .toggle-completed-checkbox:before {
     content: 'check_box';
 }
 
-li.completed .todo-title {
+li.completed .drinker-title {
     text-decoration: line-through;
     color: #757575;
 }

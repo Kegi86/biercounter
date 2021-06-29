@@ -19,9 +19,9 @@ function handleEnterKey(e) {
             taskNameTextField.removeAttr("isEditing");
             let itemId = taskNameTextField.attr("editingItemId");
             taskNameTextField.removeAttr("editingItemId");
-            putEditTodoItem(itemId, taskName, glistId);
+            putEditDrinkingPerson(itemId, taskName, glistId);
         } else {
-            postNewTodoItem(taskName, glistId);
+            postNewDrinkingPerson(taskName, glistId);
         }
     }
 }
@@ -44,7 +44,7 @@ function changeDoneState(ele) {
                 newListItem.addClass('completed')
             }
 
-            createTodoRow(newListItem, data);
+            createDrinkerRow(newListItem, data);
 
             // Replace the old one by the new one
             let oldListItem = $("#item" + itemId);
@@ -56,7 +56,7 @@ function changeDoneState(ele) {
 }
 
 /**
- * Handles the change of the todoItem status
+ * Handles the change of the DrinkingPerson status
  * @param ele the todoItem
  */
 function doDecrement(ele) {
@@ -73,7 +73,7 @@ function doDecrement(ele) {
                 // newListItem.addClass('completed')
             }
 
-            createTodoRow(newListItem, data);
+            createDrinkerRow(newListItem, data);
 
             // Replace the old one by the new one
             let oldListItem = $("#item" + itemId);
@@ -103,7 +103,7 @@ function doIncrement(ele) {
                 // newListItem.addClass('completed')
             }
 
-            createTodoRow(newListItem, data);
+            createDrinkerRow(newListItem, data);
 
             // Replace the old one by the new one
             let oldListItem = $("#item" + itemId);
@@ -132,7 +132,7 @@ function doPayed(ele) {
                 // newListItem.addClass('completed')
             }
 
-            createTodoRow(newListItem, data);
+            createDrinkerRow(newListItem, data);
 
             // Replace the old one by the new one
             let oldListItem = $("#item" + itemId);
@@ -158,7 +158,7 @@ function doPayOne(ele) {
                 // newListItem.addClass('completed')
             }
 
-            createTodoRow(newListItem, data);
+            createDrinkerRow(newListItem, data);
 
             // Replace the old one by the new one
             let oldListItem = $("#item" + itemId);
@@ -175,15 +175,15 @@ function doPayOne(ele) {
  * @param taskName  the name of the task to do
  * @param listId    the listId as UUID
  */
-function putEditTodoItem(itemId, taskName, listId, bierDrank, bierPaid) {
-    let todoItem = {
+function putEditDrinkingPerson(itemId, taskName, listId, bierDrank, bierPaid) {
+    let drinkingPerson = {
         itemId: itemId,
         taskName: taskName,
         listId: listId,
         bierDrank: bierDrank,
         bierPaid: bierPaid,
     };
-    let requestJSON = JSON.stringify(todoItem);
+    let requestJSON = JSON.stringify(drinkingPerson);
     $.ajax({
         type: "PUT",
         url: "/api/v1/edit",
@@ -200,7 +200,7 @@ function putEditTodoItem(itemId, taskName, listId, bierDrank, bierPaid) {
                 newListItem.addClass('completed')
             }
 
-            createTodoRow(newListItem, data);
+            createDrinkerRow(newListItem, data);
 
             // Replace the old one by the new one
             let oldListItem = $("#item" + data.itemId);
@@ -212,16 +212,16 @@ function putEditTodoItem(itemId, taskName, listId, bierDrank, bierPaid) {
 }
 
 /**
- * Saves a new todoItem in the backend and creates a list item in the ul list
+ * Saves a new DrinkingPerson in the backend and creates a list item in the ul list
  * @param taskName the entered task name
  * @param listId   the unique list id with an UUID
  */
-function postNewTodoItem(taskName, listId) {
-    let newTodoItem = {
+function postNewDrinkingPerson(taskName, listId) {
+    let newDrinkingPerson = {
         taskName: taskName,
         listId: listId
     };
-    let requestJSON = JSON.stringify(newTodoItem);
+    let requestJSON = JSON.stringify(newDrinkingPerson);
     $.ajax({
         type: "POST",
         url: "/api/v1/new",
@@ -235,7 +235,7 @@ function postNewTodoItem(taskName, listId) {
                 .attr("id", "item" + data.itemId)
                 .appendTo(cList);
 
-            createTodoRow(li, data);
+            createDrinkerRow(li, data);
         },
         error: function (data) {
         }
@@ -285,68 +285,56 @@ function editTodoItem(ele) {
 }
 
 /**
- * Creates a row in the todoList
- * The line consists of an id, checkbox, task name, a span with edit icon and delete icon
+ * Creates a row in the DrinkingPersonList
+ * The line consists of an id, task name, a span with plus icon, minus icon, pay icon, payOne icon and delete icon
  * @param parent
  * @param data
  */
-function createTodoRow(parent, data) {
-    let todoRow = $('<div/>')
+function createDrinkerRow(parent, data) {
+    let DrinkerRow = $('<div/>')
         .addClass('todo-row')
         .appendTo(parent)
 
-
-   /* let checkBoxAttr = $('<a/>')
-        .attr("id", data.itemId) // to know item id!
-        .attr("onclick", "changeDoneState(this)")
-        .addClass('todo-completed')
-        .appendTo(todoRow);
-
-    let checkBoxIcon = $('<i/>')
-        .addClass('material-icons toggle-completed-checkbox')
-        .appendTo(checkBoxAttr);
-*/
-
     // Task Name
     let todoTitle = $('<span/>')
-        .addClass('todo-title')
+        .addClass('drinker-title')
         .text(data.taskName)
-        .appendTo(todoRow);
+        .appendTo(DrinkerRow);
 //Beer Icon
     let bierIcon = $('<span/>')
         .addClass('material-icons')
         .text('sports_bar')
-        .appendTo(todoRow);
+        .appendTo(DrinkerRow);
 
     // DrankBier
     let manyDrank = $('<span/>')
         .addClass('values')
         .text( data.bierDrank)
-        .appendTo(todoRow);
+        .appendTo(DrinkerRow);
 // Payed Icon
 
     let dollarIcon = $('<span/>')
         .addClass('material-icons')
         .text('monetization_on')
-        .appendTo(todoRow);
+        .appendTo(DrinkerRow);
 
     // PayedBier
     let manyPayed = $('<span/>')
         .addClass('values')
         .text(data.bierPaid)
-        .appendTo(todoRow);
+        .appendTo(DrinkerRow);
 
 
     // Actions
-    let todoActions = $('<span/>')
+    let drinkerActions = $('<span/>')
         .addClass('todo-actions')
-        .appendTo(todoRow)
+        .appendTo(DrinkerRow)
 
 //remove icon
     let removeAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
         .attr("onclick", "doDecrement(this)")
-        .appendTo(todoActions);
+        .appendTo(drinkerActions);
 
     let removeIcon = $('<i/>')
         .addClass('material-icons')
@@ -357,7 +345,7 @@ function createTodoRow(parent, data) {
     let addAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
         .attr("onclick", "doIncrement(this)")
-        .appendTo(todoActions);
+        .appendTo(drinkerActions);
 
     let addIcon = $('<i/>')
         .addClass('material-icons')
@@ -367,7 +355,7 @@ function createTodoRow(parent, data) {
     let payAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
         .attr("onclick", "doPayed(this)")
-        .appendTo(todoActions);
+        .appendTo(drinkerActions);
 
     let payIcon = $('<i/>')
         .addClass('material-icons')
@@ -380,7 +368,7 @@ function createTodoRow(parent, data) {
     let payoneAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
         .attr("onclick", "doPayOne(this)")
-        .appendTo(todoActions);
+        .appendTo(drinkerActions);
 
     let payoneIcon = $('<i/>')
         .addClass('material-icons')
@@ -393,7 +381,7 @@ function createTodoRow(parent, data) {
     let deleteAttr = $('<a/>')
         .attr("id", data.itemId) // to know item id!
         .attr("onclick", "deleteTodoItem(this)")
-        .appendTo(todoActions);
+        .appendTo(drinkerActions);
 
     let deleteIcon = $('<i/>')
         .addClass('material-icons')
