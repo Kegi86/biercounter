@@ -1,16 +1,18 @@
 Add Pay One Beer Button
 
 
-
+##Zweck
+Wer kennt es nicht man hockt gemütlich in einer Bar und trinkt ein paar Bierchen.
+Während die Zeit vergeht kann es schon einmal vorkommen, dass die Schicht der Bedienung
+zu Ende geht und eine Zwischenabrechnung vorgenommen wird. Je später der Abend wird, desto schwieriger wird es da noch die Übersicht zu behalten. Mit dem Biercounter schaffen wir eine einfache Möglichkeit
+mit zu zählen.
 
 ## Ausgangslage 
 
-Als Ausgangslage haben wir das Projekt Todo-Liste genommen. 
-##Zweck
-Wer kennt es nicht man hockt gemütlich in einer Bar und trinkt ein paar Bierchen. 
-Während die Zeit vergeht kann es schon einmal vorkommen, dass die Schicht der Bedienung 
-zu Ende geht und eine Zwischenabrechnung vorgenommen wird. Je später der Abend wird, desto schwieriger wird es da noch die Übersicht zu behalten. Mit dem Biercounter schaffen wir eine einfache Möglichkeit 
-mit zu zählen.
+Als Ausgangslage haben wir das Projekt Todo-Liste genommen. Wir haben aber eigentlich nur das Grundgerüst behalten und etliche funktionen 
+hinzugefügt.
+
+
 
 ## Mappings
 
@@ -104,7 +106,9 @@ mit zu zählen.
 
 
 
-# Buttons
+#Icons
+
+Die Icons wurden mittels der material-icon Bibliothek von Google hinzugefügt.
 
 # Hochzählen
 
@@ -179,6 +183,24 @@ function doIncrement(ele) {
 
 ## Hintergundbild
 
+Das Hintergrundbild wurde im Verzeichnis ***src/main/resources/static/image/background.jpg*** gespeichert.
+
+Dann wurde das bild mittels CSS im body eingefügt.
+
+**Hier der Code dazu:**
+
+```css
+body {
+    font-size: 18px;
+    line-height: 1.58;
+    background: #6699FF;
+    background-image: url("../image/background.jpg");
+    background-size: 100% auto;
+    color: #333;
+}
+```
+
+
 ## Bezahl 1
 ### Methode
 ```bash
@@ -190,8 +212,11 @@ this.bierDrank = this.bierDrank - 1;
   }
 }
 ```
-```bash
-public void setOneBierPaid (Integer bierPaid) {bierPaid = bierPaid + 1; bierDrank = bierDrank -1;}
+```javascript
+public void setOneBierPaid (Integer bierPaid) {
+    bierPaid = bierPaid + 1; 
+    bierDrank = bierDrank -1;
+}
 ```
 ```bash
 @PutMapping("/payone/{id}")
@@ -218,41 +243,31 @@ return ResponseEntity.ok(drinkingPersonService.doPayOneForPersItem(id));
 Drinking Person
 ***********************************************
 
-Erstllen der Methode, welche prüft, ob überhaupt genügend Bier zum Zahlen übrig sind, und dann diese entschsprechend von "bierDrank" auf "bierPaid" umbucht.
+Erstllen der Methode, welche prüft, ob überhaupt genügend Bier zum Zahlen übrig sind, 
+und dann diese entschsprechend von "bierDrank" auf "bierPaid" umbucht. Bei erfolgreicher Prüfung wird 
+beerCounter der Wert true übergeben.
 
 
 
 ***********************************************************
-
-    public boolean doManyBierPayed(Integer manyBierPay) {
-        if (manyBierPay <= this.bierDrank){
-            this.bierDrank = this.bierDrank - manyBierPay;
-            this.bierPaid = this.bierPaid + manyBierPay;
-            return true;
-        } else {
-            return false;}
-    }
-
-
+```javascript
+public boolean doManyBierPayed(Integer manyBierPay) {
+    if (manyBierPay <= this.bierDrank){
+        this.bierDrank = this.bierDrank - manyBierPay;
+        this.bierPaid = this.bierPaid + manyBierPay;
+        this.beerCounter = true;
+        return true;
+    } else {
+        this.beerCounter = false;
+        return false;}
+}
+```
 
 **********************************************
+
 Nach einigen schwierigkeiten mit dem Übergeben der Variablen konnte die neue Funktion so erfolgreich umgesetzt werden.
 
-Nun soll geprüft werden, ob das abbuchen wirklich funktioniert hat, oder ob bei der eingabe einen Fehler (zu viele Biere) abgebucht wurden und dadurch die funktion nicht ausgefürrt wurde.
-Dies soll ans Frontend übermittelt werden und dem User eine Bestätigung, respektiver Fehlermeldung anzeigen.
-
-
-Dafür wurde folgender TodoItemService erstellt: (nicht implementiert)
-***********************************************************
-    public boolean doCheckBierToPay (Long id, Integer manyBierPay) {
-        TodoItem item = todoItemRepository.findByItemId(id);
-        if ( item.doManyBierPayed(manyBierPay)) {
-            return true;
-        } else {
-        return false;}
-    }
-
-************************************************************
+Wenn die Prüfung nicht erfolgreich war wird beer
 
 ## Symbole
 

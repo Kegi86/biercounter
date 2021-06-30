@@ -1,10 +1,10 @@
 h1 {
-    color:#0000FF;
+    color: #0000FF;
     font-family: sans-serif;
 }
 
 h2 {
-    color:#FF0000;
+    color: #FF0000;
 }
 
 table {
@@ -19,11 +19,8 @@ body {
     font-size: 18px;
     line-height: 1.58;
     background: #6699FF;
-   /* background: -webkit-linear-gradient(to left, #336699, #228899);
-    background: linear-gradient(to left, #336699, #228899);*/
     background-image: url("../image/background.jpg");
-   background-size: 100% auto;
-
+    background-size: 100% auto;
     color: #333;
 }
 
@@ -56,7 +53,7 @@ input {
     margin-top: 60px;
     background-color: #fff;
     padding: 15px;
-    box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
     border-radius: 20px;
 
 }
@@ -140,8 +137,8 @@ input {
 .dinker-content .drinking-completed {
     display: inline-block;
     text-align: center;
-    width:35px;
-    height:35px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
 }
 
@@ -173,6 +170,7 @@ input {
     width: calc(100% - 80px);
     height: 50px;
 }
+
 .dinker-content .edit-actions {
     text-align: right;
 }
