@@ -109,8 +109,38 @@ hinzugefügt.
 #Icons
 
 Die Icons wurden mittels der material-icon Bibliothek von Google hinzugefügt.
+#### Der Code setzt sich wie folgt zusammen
+```bash
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+```
+
+#### Beer-Icon
+
+```bash
+let bierIcon = $('<span/>')
+      .addClass('material-icons')
+      .text('sports_bar')
+      .appendTo(DrinkerRow);
+```
+#### Ich habe die Spendierhose an - Button
+
+```bash
+let dollarIcon = $('<span/>')
+        .addClass('material-icons')
+        .text('monetization_on')
+        .appendTo(DrinkerRow);
+```
+#### Löschen - Button
+```bash
+ let removeIcon = $('<i/>')
+        .addClass('material-icons')
+        .text('remove_circle_outline')
+        .appendTo(removeAttr);
+```
 
 # Hochzählen
+
+
 
 ### Mapping erstellen
 
@@ -181,7 +211,73 @@ function doIncrement(ele) {
 ```
 ## Runterzählen
 
+### Methode erstellen
+```bash
+public PersItem doDecrementForPersItem(Long id) {
+PersItem item = drinkingPersonRepository.findByItemId(id);
+if (item != null) {
+item.doBierDrunkDecrement();
+drinkingPersonRepository.save(item);
+return item;
+}
+return null;
+}
+```
+### Mapping erstellen
+
+Auch hier wurde ein Mapping auf die h2 Datenbank erstellt
+
+```bash
+@PutMapping("/decrement/{id}")
+public ResponseEntity<PersItem> doDecrement(@PathVariable Long id) {
+return ResponseEntity.ok(drinkingPersonService.doDecrementForPersItem(id));
+}
+```
+
+###Funktion erstellen
+
+```bash
+function doDecrement(ele) {
+    let itemId = $(ele).attr("id"); // get the item id!
+    $.ajax({
+        type: "PUT",
+        url: "/api/v1/decrement/" + itemId,
+        success: function (data) {
+            // Create new list item
+            let newListItem = $('<li/>')
+                .attr("id", "item" + data.itemId);
+
+            if (data.done) {
+                // newListItem.addClass('completed')
+            }
+
+            createDrinkerRow(newListItem, data);
+
+            // Replace the old one by the new one
+            let oldListItem = $("#item" + itemId);
+            oldListItem.replaceWith(newListItem);
+        },
+        error: function (data) {
+        }
+    });
+}
+```
+
+###Funktions Aufruf und Button entfernen
+```bash
+let removeAttr = $('<a/>')
+        .attr("id", data.itemId) // to know item id!
+        .attr("onclick", "doDecrement(this)")
+        .appendTo(drinkerActions);
+
+    let removeIcon = $('<i/>')
+        .addClass('material-icons')
+        .text('remove_circle_outline')
+        .appendTo(removeAttr);
+```
+
 ## Hintergundbild
+
 
 Das Hintergrundbild wurde im Verzeichnis ***src/main/resources/static/image/background.jpg*** gespeichert.
 
@@ -267,7 +363,7 @@ public boolean doManyBierPayed(Integer manyBierPay) {
 
 Nach einigen schwierigkeiten mit dem Übergeben der Variablen konnte die neue Funktion so erfolgreich umgesetzt werden.
 
-Wenn die Prüfung nicht erfolgreich war wird beer
+Wenn die Prüfung nicht erfolgreich war wird eine Fehlermeldung ausgegeben
 
-## Symbole
+
 
