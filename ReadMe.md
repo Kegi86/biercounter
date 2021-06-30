@@ -365,5 +365,56 @@ Nach einigen schwierigkeiten mit dem Übergeben der Variablen konnte die neue Fu
 
 Wenn die Prüfung nicht erfolgreich war wird eine Fehlermeldung ausgegeben
 
+# Docker
+
+## Dockercontainer erstellen
+
+```bash
+$  docker build -t svdobu/beercounter-app.
+$  docker run -p 8080:8080 --rm -it  svdobu/beercounter
+```
+## Dockerfile erstellen
+
+```bash
+
+FROM openjdk:11-jdk-slim
+
+ADD target/beercounter-*.jar app.jar
+
+ARG JVM_OPTS
+ENV JVM_OPTS=${JVM_OPTS}
+
+CMD java ${JVM_OPTS} -jar app.jar
+
+```
+
+## Docker-compose erstellen
+```bash
+
+version: '2'
 
 
+networks:
+  proxy:
+    external: true
+
+services:
+
+  biercounter-app-h2:
+    image: svdobu/beercounter:latest
+    labels:
+      - "traefik.backend=bier-h2"
+      - "traefik.frontend.rule=Host:bier-h2.united-portal.com"
+      - "traefik.docker.network=proxy"
+      - "traefik.port=8080"
+      - "traefik.enable=true"
+
+    restart: always
+    networks:
+      - proxy
+    environment:
+      APP_NAME: Beercounter DB mit Spring Boot and H2
+      ACTIVE_PROFILES: dev,h2
+      APP_URL: https://beer-h2.united-portal.com
+
+```

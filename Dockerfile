@@ -1,6 +1,6 @@
 FROM openjdk:11-jdk-slim
 
-ADD target/biercounter-*.jar app.jar
+ADD target/beercounter-*.jar app.jar
 
 ARG JVM_OPTS
 ENV JVM_OPTS=${JVM_OPTS}
