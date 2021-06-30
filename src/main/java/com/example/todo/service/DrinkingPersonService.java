@@ -117,6 +117,16 @@ public class DrinkingPersonService {
         return null;
     }
 
+    public  PersItem doManyPayedForPersItem(Long id, Integer manyBierPay) {
+        PersItem item = drinkingPersonRepository.findByItemId(id);
+        if (item != null) {
+            item.doManyBierPayed(manyBierPay);
+            drinkingPersonRepository.save(item);
+            return item;
+        }
+        return null;
+    }
+
     public PersItem doPayOneForPersItem(Long id) {
         PersItem item = drinkingPersonRepository.findByItemId(id);
         if (item != null) {

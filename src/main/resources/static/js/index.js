@@ -120,27 +120,35 @@ function doIncrement(ele) {
  */
 function doPayed(ele) {
     let itemId = $(ele).attr("id"); // get the item id!
-    $.ajax({
-        type: "PUT",
-        url: "/api/v1/payed/" + itemId,
-        success: function (data) {
-            // Create new list item
-            let newListItem = $('<li/>')
-                .attr("id", "item" + data.itemId);
 
-            if (data.done) {
-                // newListItem.addClass('completed')
+    let manyBier = parseInt(prompt("How many Bier you want to pay?", ''));
+    if (isNaN(manyBier)) {
+        parseInt(prompt("It is not a number. Please enter a number, "));
+    } else {
+
+        $.ajax({
+            type: "PUT",
+            url: "/api/v1/manypayed/" + itemId + "/" + manyBier,
+            success: function (data) {
+                // Create new list item
+                let newListItem = $('<li/>')
+                    .attr("id", "item" + data.itemId);
+
+                if (data.done) {
+                    // newListItem.addClass('completed')
+                }
+
+                createDrinkerRow(newListItem, data);
+
+                // Replace the old one by the new one
+                let oldListItem = $("#item" + itemId);
+                oldListItem.replaceWith(newListItem);
+            },
+            error: function (data) {
             }
 
-            createDrinkerRow(newListItem, data);
-
-            // Replace the old one by the new one
-            let oldListItem = $("#item" + itemId);
-            oldListItem.replaceWith(newListItem);
-        },
-        error: function (data) {
-        }
-    });
+        });
+    }
 }
 
 //funktion 1 bier bezahlt

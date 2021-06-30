@@ -81,6 +81,11 @@ public class DrinkingPersonController {
         return ResponseEntity.ok(drinkingPersonService.doPayedForPersItem(id));
     }
 
+    @PutMapping("/manypayed/{id}/{count}")
+    public ResponseEntity<PersItem> doManyPayed(@PathVariable Long id, @PathVariable Integer count) {
+        return ResponseEntity.ok(drinkingPersonService.doManyPayedForPersItem(id, count));
+    }
+
     @PutMapping("/payone/{id}")
     public ResponseEntity<PersItem> doPayOne(@PathVariable Long id) {
         return ResponseEntity.ok(drinkingPersonService.doPayOneForPersItem(id));

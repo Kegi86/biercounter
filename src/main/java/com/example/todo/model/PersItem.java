@@ -94,6 +94,16 @@ public class PersItem {
         this.bierDrank = 0;
     }
 
+    public boolean doManyBierPayed(Integer manyBierPay) {
+        if (manyBierPay <= this.bierDrank){
+            this.bierDrank = this.bierDrank - manyBierPay;
+            this.bierPaid = this.bierPaid + manyBierPay;
+            return true;
+        } else {
+            return false;}
+    }
+
+
     public void setBierPaid (Integer bierPaid) {bierPaid = bierPaid + bierDrank; bierDrank = 0;}
 
     public Integer getOneBierPaid () {return bierPaid;}
