@@ -30,9 +30,7 @@ public class PersItem {
     }
 
     private Boolean isDone = false; // Default value
-
     private Date createdAt = new Date();
-
     private Integer bierDrank = 0;
     private Integer bierPaid = 0;
 
@@ -40,21 +38,13 @@ public class PersItem {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
+    public void setItemId(Long itemId) { this.itemId = itemId; }
 
-    public UUID getListId() {
-        return listId;
-    }
+    public UUID getListId() { return listId; }
 
-    public void setListId(UUID listId) {
-        this.listId = listId;
-    }
+    public void setListId(UUID listId) { this.listId = listId; }
 
-    public String getTaskName() {
-        return taskName;
-    }
+    public String getTaskName() { return taskName; }
 
     public void setTaskName(String taskName) {
         this.taskName = taskName;
@@ -68,32 +58,32 @@ public class PersItem {
         isDone = done;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+    public Date getCreatedAt() { return createdAt; }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
 
-    //setBierDrank erhöht getrunkene Biere um 1
+    public Integer getBierDrank () {return bierDrank;} //important rückgabewert
 
-    public Integer getBierDrank () {return bierDrank;}
+    //Increment, getrunkene Biere um 1 erhöhen
     public void doBierDrunkIncrement() {
         this.bierDrank++;
     }
+
+    //Dencrement, getrunkene Biere um 1 veringern
     public void doBierDrunkDecrement() {
         if (this.bierDrank > 0) {this.bierDrank--;}
     }
 
     //setBierPaid fügt den gezahlten Biere die getrunknen Biere hinzu und resetet getrunkene Biere auf 0
 
-    public Integer getBierPaid () {return bierPaid;}
+    public Integer getBierPaid () {return bierPaid;} //important rückgabewert
+
     public void doBierPayed() {
         this.bierPaid = this.bierPaid + this.bierDrank;
         this.bierDrank = 0;
     }
 
+    //Eingabe durch User wieviele Biere bezahlt werden
     public boolean doManyBierPayed(Integer manyBierPay) {
         if (manyBierPay <= this.bierDrank){
             this.bierDrank = this.bierDrank - manyBierPay;
@@ -103,16 +93,10 @@ public class PersItem {
             return false;}
     }
 
-
-    public void setBierPaid (Integer bierPaid) {bierPaid = bierPaid + bierDrank; bierDrank = 0;}
-
-    public Integer getOneBierPaid () {return bierPaid;}
     public void doOneBierPay() {
         if (this.bierDrank > 0) {
             this.bierPaid = this.bierPaid + 1;
             this.bierDrank = this.bierDrank - 1;
         }
     }
-
-    public void setOneBierPaid (Integer bierPaid) {bierPaid = bierPaid + 1; bierDrank = bierDrank -1;}
 }
