@@ -33,6 +33,7 @@ public class PersItem {
     private Date createdAt = new Date();
     private Integer bierDrank = 0;
     private Integer bierPaid = 0;
+    public Boolean checkCounter = false; //Default value
 
     public Long getItemId() {
         return itemId;
@@ -88,8 +89,10 @@ public class PersItem {
         if (manyBierPay <= this.bierDrank){
             this.bierDrank = this.bierDrank - manyBierPay;
             this.bierPaid = this.bierPaid + manyBierPay;
+            this.checkCounter = true;
             return true;
         } else {
+            this.checkCounter = false;
             return false;}
     }
 

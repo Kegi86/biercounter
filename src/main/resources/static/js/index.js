@@ -123,7 +123,7 @@ function doPayed(ele) {
 
     let manyBier = parseInt(prompt("How many Bier you want to pay?", ''));
     if (isNaN(manyBier)) {
-        parseInt(prompt("It is not a number. Please enter a number, "));
+        parseInt(alert("It is not a number. Please enter a number, "));
     } else {
 
         $.ajax({
@@ -138,11 +138,24 @@ function doPayed(ele) {
                     // newListItem.addClass('completed')
                 }
 
-                createDrinkerRow(newListItem, data);
 
-                // Replace the old one by the new one
-                let oldListItem = $("#item" + itemId);
-                oldListItem.replaceWith(newListItem);
+
+                //zviel oder zwenig bier zahlt?
+                if(data.checkCounter == false) {
+                    alert("You can't pay more than drink");
+                }else {
+                    alert(manyBier + " beers were successfully paid")
+                    createDrinkerRow(newListItem, data);
+                    // Replace the old one by the new one
+                    let oldListItem = $("#item" + itemId);
+                    oldListItem.replaceWith(newListItem);
+                }
+
+
+                //if beer greater than drunk then error
+
+
+
             },
             error: function (data) {
             }

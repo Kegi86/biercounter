@@ -117,7 +117,7 @@ public class DrinkingPersonService {
         return null;
     }
 
-    public  PersItem doManyPayedForPersItem(Long id, Integer manyBierPay) {
+    public PersItem doManyPayedForPersItem(Long id, Integer manyBierPay) {
         PersItem item = drinkingPersonRepository.findByItemId(id);
         if (item != null) {
             item.doManyBierPayed(manyBierPay);

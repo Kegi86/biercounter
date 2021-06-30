@@ -3,7 +3,10 @@ Add Pay One Beer Button
 
 
 
-## Ausgangslage / Zweck
+## Ausgangslage 
+
+Als Ausgangslage haben wir das Projekt Todo-Liste genommen. 
+##Zweck
 Wer kennt es nicht man hockt gemütlich in einer Bar und trinkt ein paar Bierchen. 
 Während die Zeit vergeht kann es schon einmal vorkommen, dass die Schicht der Bedienung 
 zu Ende geht und eine Zwischenabrechnung vorgenommen wird. Je später der Abend wird, desto schwieriger wird es da noch die Übersicht zu behalten. Mit dem Biercounter schaffen wir eine einfache Möglichkeit 
@@ -197,6 +200,19 @@ return ResponseEntity.ok(drinkingPersonService.doPayOneForPersItem(id));
 }
 ```
 ## Bier bezahlen
+
+
+    //Eingabe durch User wieviele Biere bezahlt werden
+    public boolean doManyBierPayed(Integer manyBierPay) {
+        if (manyBierPay <= this.bierDrank){
+            this.bierDrank = this.bierDrank - manyBierPay;
+            this.bierPaid = this.bierPaid + manyBierPay;
+            this.checkCounter = true;
+            return true;
+        } else {
+            this.checkCounter = false;
+            return false;}
+    }
 
 ******************************************************
 Drinking Person
