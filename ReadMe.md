@@ -1,4 +1,4 @@
-Add Pay One Beer Button
+
 
 
 ##Zweck
@@ -16,7 +16,7 @@ hinzugefügt.
 
 ## Mappings
 
-
+Die Mappings greifen auf die REST Schnittstelle welche die Ressourcen zur Verfügung stellt.
 
 ```bash
   @GetMapping("/item/{itemId}")
@@ -110,6 +110,7 @@ hinzugefügt.
 
 Die Icons wurden mittels der material-icon Bibliothek von Google hinzugefügt.
 #### Der Code setzt sich wie folgt zusammen
+Der link im index.html wird benötigt damit die Icons abgerufen werden können.
 ```bash
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
@@ -322,29 +323,22 @@ return ResponseEntity.ok(drinkingPersonService.doPayOneForPersItem(id));
 ```
 ## Bier bezahlen
 
-
-    //Eingabe durch User wieviele Biere bezahlt werden
-    public boolean doManyBierPayed(Integer manyBierPay) {
-        if (manyBierPay <= this.bierDrank){
-            this.bierDrank = this.bierDrank - manyBierPay;
-            this.bierPaid = this.bierPaid + manyBierPay;
-            this.checkCounter = true;
-            return true;
-        } else {
-            this.checkCounter = false;
-            return false;}
-    }
-
-******************************************************
-Drinking Person
-***********************************************
-
-Erstllen der Methode, welche prüft, ob überhaupt genügend Bier zum Zahlen übrig sind, 
+Erstellen der Methode, welche prüft, ob überhaupt genügend Bier zum Zahlen übrig sind, 
 und dann diese entschsprechend von "bierDrank" auf "bierPaid" umbucht. Bei erfolgreicher Prüfung wird 
 beerCounter der Wert true übergeben.
 
 
-
+Wenn die Prüfung erfolgreich war, wird eine Bestätigung ausgegeben mit der anzahl bezahlter Biere und 
+das alte ListItem durch das neue erstzt.
+```javascript
+else {
+    alert(manyBier + " beers were successfully paid")
+    createDrinkerRow(newListItem, data);
+    // Replace the old one by the new one
+    let oldListItem = $("#item" + itemId);
+    oldListItem.replaceWith(newListItem);
+}
+```
 ***********************************************************
 ```javascript
 public boolean doManyBierPayed(Integer manyBierPay) {
@@ -363,7 +357,7 @@ public boolean doManyBierPayed(Integer manyBierPay) {
 
 Nach einigen schwierigkeiten mit dem Übergeben der Variablen konnte die neue Funktion so erfolgreich umgesetzt werden.
 
-Wenn die Prüfung nicht erfolgreich war wird eine Fehlermeldung ausgegeben
+Wenn die Prüfung nicht erfolgreich war wird eine Fehlermeldung mittels untenstehendem Code ausgegeben
 
 # Docker
 
@@ -393,6 +387,11 @@ CMD java ${JVM_OPTS} -jar app.jar
 
 version: '2'
 
+//zuviel bier bezahlt?
+```javascript
+if(data.beerCounter == false) {
+alert("You can't pay more than drink");
+```
 
 networks:
   proxy:
