@@ -140,7 +140,7 @@ function doPayed(ele) {
 
 
 
-                //zviel oder zwenig bier zahlt?
+                //zuviel bier bezahlt?
                 if(data.beerCounter == false) {
                     alert("You can't pay more than drink");
                 }else {
