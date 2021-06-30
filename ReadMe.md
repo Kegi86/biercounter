@@ -196,7 +196,47 @@ public ResponseEntity<PersItem> doPayOne(@PathVariable Long id) {
 return ResponseEntity.ok(drinkingPersonService.doPayOneForPersItem(id));
 }
 ```
-## Bezahl alle
+## Bier bezahlen
+
+******************************************************
+Drinking Person
+***********************************************
+
+Erstllen der Methode, welche prüft, ob überhaupt genügend Bier zum Zahlen übrig sind, und dann diese entschsprechend von "bierDrank" auf "bierPaid" umbucht.
+
+
+
+***********************************************************
+
+    public boolean doManyBierPayed(Integer manyBierPay) {
+        if (manyBierPay <= this.bierDrank){
+            this.bierDrank = this.bierDrank - manyBierPay;
+            this.bierPaid = this.bierPaid + manyBierPay;
+            return true;
+        } else {
+            return false;}
+    }
+
+
+
+**********************************************
+Nach einigen schwierigkeiten mit dem Übergeben der Variablen konnte die neue Funktion so erfolgreich umgesetzt werden.
+
+Nun soll geprüft werden, ob das abbuchen wirklich funktioniert hat, oder ob bei der eingabe einen Fehler (zu viele Biere) abgebucht wurden und dadurch die funktion nicht ausgefürrt wurde.
+Dies soll ans Frontend übermittelt werden und dem User eine Bestätigung, respektiver Fehlermeldung anzeigen.
+
+
+Dafür wurde folgender TodoItemService erstellt: (nicht implementiert)
+***********************************************************
+    public boolean doCheckBierToPay (Long id, Integer manyBierPay) {
+        TodoItem item = todoItemRepository.findByItemId(id);
+        if ( item.doManyBierPayed(manyBierPay)) {
+            return true;
+        } else {
+        return false;}
+    }
+
+************************************************************
 
 ## Symbole
 
